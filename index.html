@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday To Me | Ghiffary Azhar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Space+Grotesk:wght@300;500;700&family=Tektur:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00f7ff;
+            --secondary: #ff00e4;
+            --accent: #7700ff;
+            --dark: #0a0a20;
+            --darker: #050510;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--darker);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            perspective: 1000px;
+        }
+        
+        .cosmic-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: radial-gradient(ellipse at bottom, var(--darker) 0%, var(--dark) 100%);
+            overflow: hidden;
+        }
+        
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle var(--duration) infinite ease-in-out;
+            filter: drop-shadow(0 0 5px currentColor);
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .title {
+            font-family: 'Tektur', cursive;
+            font-size: 4.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientShift 8s ease infinite, textGlow 3s ease-in-out infinite alternate;
+            background-size: 300% 300%;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-top: 2rem;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes textGlow {
+            from { text-shadow: 0 0 10px rgba(0, 247, 255, 0.3); }
+            to { text-shadow: 0 0 30px rgba(255, 0, 228, 0.6); }
+        }
+        
+        .name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            margin: 1.5rem 0;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 15px rgba(0, 247, 255, 0.3);
+            letter-spacing: 5px;
+            position: relative;
+            display: inline-block;
+            animation: floatName 6s ease-in-out infinite;
+        }
+        
+        @keyframes floatName {
+            0%, 100% { transform: translateY(0) rotateX(0deg); }
+            50% { transform: translateY(-20px) rotateX(10deg); }
+        }
+        
+        .name::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--primary), transparent);
+            animation: linePulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes linePulse {
+            0%, 100% { opacity: 0.5; width: 80%; left: 10%; }
+            50% { opacity: 1; width: 100%; left: 0; }
+        }
+        
+        .age-container {
+            position: relative;
+            display: inline-block;
+            margin: 3rem 0;
+            perspective: 1000px;
+        }
+        
+        .age-display {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 8rem;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 0 20px var(--primary), 0 0 40px var(--accent);
+            position: relative;
+            z-index: 2;
+            animation: numberGlow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes numberGlow {
+            from { text-shadow: 0 0 10px var(--primary), 0 0 20px var(--accent); }
+            to { text-shadow: 0 0 20px var(--primary), 0 0 40px var(--accent), 0 0 60px rgba(119, 0, 255, 0.5); }
+        }
+        
+        .age-orb {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 247, 255, 0.1) 0%, rgba(119, 0, 255, 0.05) 70%, transparent 90%);
+            box-shadow: 0 0 60px rgba(0, 247, 255, 0.2);
+            z-index: 1;
+            animation: orbPulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes orbPulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+        }
+        
+        .cake {
+            font-size: 4rem;
+            margin: 2rem 0;
+            display: inline-block;
+            transform-origin: center bottom;
+            animation: bounce 2s infinite, rotate 10s linear infinite;
+            filter: drop-shadow(0 0 10px var(--secondary));
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(5deg); }
+        }
+        
+        @keyframes rotate {
+            to { transform: rotate(360deg); }
+        }
+        
+        .message-container {
+            background: rgba(10, 10, 32, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 247, 255, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 0 30px rgba(0, 247, 255, 0.1);
+            transform-style: preserve-3d;
+        }
+        
+        .message {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin: 1.5rem 0;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px) rotateX(20deg);
+            animation: messageIn 1.2s forwards;
+            animation-delay: calc(var(--order) * 0.3s);
+            font-weight: 300;
+        }
+        
+        .message strong {
+            color: var(--primary);
+            font-weight: 500;
+        }
+        
+        .fun-message {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            margin-top: 2rem;
+            font-weight: bold;
+            color: var(--secondary);
+            text-shadow: 0 0 10px rgba(255, 0, 228, 0.5);
+            animation: funMessagePulse 2s infinite alternate;
+        }
+        
+        @keyframes funMessagePulse {
+            from { transform: scale(1); opacity: 0.8; }
+            to { transform: scale(1.05); opacity: 1; text-shadow: 0 0 20px rgba(255, 0, 228, 0.8); }
+        }
+        
+        @keyframes messageIn {
+            to {
+                opacity: 1;
+                transform: translateY(0) rotateX(0);
+            }
+        }
+        
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .particle {
+            position: absolute;
+            background: radial-gradient(circle, var(--color) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(5px);
+            animation: floatParticle linear infinite;
+        }
+        
+        @keyframes floatParticle {
+            to {
+                transform: translate(var(--tx), var(--ty));
+            }
+        }
+        
+        .meteor {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background-color: white;
+            border-radius: 50%;
+            box-shadow: 0 0 5px 1px white, 0 0 15px 2px var(--color);
+            animation: meteorFall linear;
+            z-index: -1;
+            opacity: 0;
+        }
+        
+        @keyframes meteorFall {
+            0% {
+                transform: translateX(var(--start-x)) translateY(var(--start-y));
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(var(--end-x)) translateY(var(--end-y));
+                opacity: 0;
+            }
+        }
+        
+        .confetti {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            background-color: var(--color);
+            animation: confettiFall linear;
+            z-index: 100;
+            opacity: 0;
+            transform-origin: center;
+        }
+        
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-20px) rotate(0deg) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+                transform: translateY(0) rotate(0deg) scale(1);
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg) scale(0.5);
+                opacity: 0;
+            }
+        }
+        
+        .cursor-follower {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(0, 247, 255, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            mix-blend-mode: screen;
+            animation: cursorPulse 2s infinite alternate;
+            display: none;
+        }
+        
+        @keyframes cursorPulse {
+            from { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+            to { transform: translate(-50%, -50%) scale(1.5); opacity: 0.2; }
+        }
+        
+        @media (max-width: 768px) {
+            .title {
+                font-size: 3rem;
+            }
+            .name {
+                font-size: 2.5rem;
+            }
+            .age-display {
+                font-size: 5rem;
+            }
+            .message {
+                font-size: 1.1rem;
+            }
+            .fun-message {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cosmic-bg"></div>
+    <div class="stars" id="stars"></div>
+    <div class="particles" id="particles"></div>
+    <div class="cursor-follower" id="cursorFollower"></div>
+    
+    <div class="container">
+        <h1 class="title">Happy Birthday To Me</h1>
+        <div class="name">Ghiffary Azhar</div>
+        
+        <div class="age-container">
+            <div class="age-orb"></div>
+            <div class="age-display" id="ageDisplay">0</div>
+        </div>
+        
+        <div class="cake">🎂</div>
+        
+        <div class="message-container">
+            <div class="message" style="--order: 1;">
+                <strong>Barakallah fii umrik, diriku sendiri!</strong> Semoga di usia baruku ini, aku semakin bersyukur dan dapat menjadi berkat bagi orang lain.
+            </div>
+            
+            <div class="message" style="--order: 2;">
+                Semoga di tahun-tahun mendatang, aku selalu diberikan <strong>kesehatan, kekuatan, dan hidayah</strong> untuk terus menggapai cita-cita dan menjadi pribadi yang lebih baik.
+            </div>
+            
+            <div class="message" style="--order: 3;">
+                Bersyukur atas setiap momen yang telah kulewati. Di usia yang bertambah ini, aku berharap dapat terus menjadi pribadi yang <strong>lebih baik, penuh kasih, dan bermanfaat</strong> bagi sesama.
+            </div>
+            
+            <div class="message" style="--order: 4;">
+                <strong>Selamat ulang tahun untuk diriku sendiri.</strong> 🚀
+            </div>
+            
+            <div class="fun-message">anjay 18 tahun juga gw 🗿</div>
+        </div>
+    </div>
+
+    <script>
+        // Cosmic elements creation
+        function createCosmicElements() {
+            // Create stars
+            const starsContainer = document.getElementById('stars');
+            const starCount = 300;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                // Random size between 1px and 3px
+                const size = Math.random() * 2 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                
+                // Random position
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                
+                // Random animation duration between 2s and 6s
+                star.style.setProperty('--duration', `${Math.random() * 4 + 2}s`);
+                
+                // Random color (white, blue, or pink tint)
+                const colors = ['white', '#aaf', '#faf'];
+                star.style.color = colors[Math.floor(Math.random() * colors.length)];
+                
+                starsContainer.appendChild(star);
+            }
+            
+            // Create floating particles
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            const colors = ['rgba(0, 247, 255, 0.3)', 'rgba(255, 0, 228, 0.3)', 'rgba(119, 0, 255, 0.3)'];
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random size between 50px and 200px
+                const size = Math.random() * 150 + 50;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // Random color
+                particle.style.setProperty('--color', colors[Math.floor(Math.random() * colors.length)]);
+                
+                // Random movement
+                const tx = (Math.random() - 0.5) * 200;
+                const ty = (Math.random() - 0.5) * 200;
+                particle.style.setProperty('--tx', `${tx}px`);
+                particle.style.setProperty('--ty', `${ty}px`);
+                
+                // Random animation duration between 20s and 40s
+                particle.style.animationDuration = `${Math.random() * 20 + 20}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Create meteors
+        function createMeteor() {
+            const meteor = document.createElement('div');
+            meteor.classList.add('meteor');
+            
+            // Random starting position at the top
+            const startX = Math.random() * 100;
+            const startY = -10;
+            meteor.style.setProperty('--start-x', `${startX}%`);
+            meteor.style.setProperty('--start-y', `${startY}%`);
+            
+            // Random ending position
+            const endX = startX + (Math.random() * 40 - 20);
+            const endY = 110;
+            meteor.style.setProperty('--end-x', `${endX}%`);
+            meteor.style.setProperty('--end-y', `${endY}%`);
+            
+            // Random size
+            const size = Math.random() * 3 + 1;
+            meteor.style.width = `${size}px`;
+            meteor.style.height = `${size}px`;
+            
+            // Random color
+            const colors = ['#00f7ff', '#ff00e4', '#ffffff'];
+            meteor.style.setProperty('--color', colors[Math.floor(Math.random() * colors.length)]);
+            
+            // Random animation duration
+            const duration = Math.random() * 1 + 0.5;
+            meteor.style.animationDuration = `${duration}s`;
+            
+            document.body.appendChild(meteor);
+            
+            // Remove meteor after animation completes
+            setTimeout(() => {
+                meteor.remove();
+            }, duration * 1000);
+        }
+        
+        // Create confetti
+        function createConfetti() {
+            const colors = ['#00f7ff', '#ff00e4', '#7700ff', '#ffffff', '#00ff88'];
+            
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                
+                // Random color
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.setProperty('--color', color);
+                
+                // Random size
+                const size = Math.random() * 10 + 8;
+                confetti.style.width = `${size}px`;
+                confetti.style.height = `${size}px`;
+                
+                // Random shape (circle, square, or triangle)
+                const shapes = ['50%', '0', '50% 50% 0 50%'];
+                confetti.style.borderRadius = shapes[Math.floor(Math.random() * shapes.length)];
+                
+                // Random starting position at the top
+                confetti.style.left = `${Math.random() * 100}%`;
+                confetti.style.top = '-20px';
+                
+                // Random animation duration and delay
+                const duration = Math.random() * 3 + 2;
+                const delay = Math.random() * 0.5;
+                confetti.style.animationDuration = `${duration}s`;
+                confetti.style.animationDelay = `${delay}s`;
+                
+                document.body.appendChild(confetti);
+                
+                // Remove confetti after animation completes
+                setTimeout(() => {
+                    confetti.remove();
+                }, (duration + delay) * 1000);
+            }
+        }
+        
+        // Age counter animation
+        function animateAgeCounter() {
+            const ageDisplay = document.getElementById('ageDisplay');
+            let age = 0;
+            const targetAge = 18;
+            const duration = 2500; // 2.5 seconds
+            const startTime = Date.now();
+            
+            function updateCounter() {
+                const elapsed = Date.now() - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                // Ease-out function
+                const easedProgress = 1 - Math.pow(1 - progress, 3);
+                
+                age = Math.floor(easedProgress * targetAge);
+                ageDisplay.textContent = age;
+                
+                if (progress < 1) {
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    // Final celebration when counter completes
+                    createConfetti();
+                }
+            }
+            
+            requestAnimationFrame(updateCounter);
+        }
+        
+        // Cursor follower effect
+        function setupCursorFollower() {
+            const cursorFollower = document.getElementById('cursorFollower');
+            
+            document.addEventListener('mousemove', (e) => {
+                cursorFollower.style.display = 'block';
+                cursorFollower.style.left = `${e.clientX}px`;
+                cursorFollower.style.top = `${e.clientY}px`;
+            });
+            
+            document.addEventListener('click', () => {
+                cursorFollower.style.transform = 'translate(-50%, -50%) scale(2)';
+                setTimeout(() => {
+                    cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
+                }, 300);
+            });
+        }
+        
+        // Initialize everything
+        window.addEventListener('DOMContentLoaded', () => {
+            createCosmicElements();
+            setupCursorFollower();
+            animateAgeCounter();
+            
+            // Create initial meteors
+            for (let i = 0; i < 5; i++) {
+                setTimeout(createMeteor, i * 800);
+            }
+            
+            // Continue creating meteors periodically
+            setInterval(createMeteor, 2000);
+            
+            // Create confetti on click
+            document.addEventListener('click', createConfetti);
+            
+            // Initial confetti burst
+            setTimeout(() => {
+                createConfetti();
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
